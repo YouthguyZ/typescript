@@ -9,7 +9,11 @@ channel.getChannel()
 
 <template>
   <ul class="catagtory">
-    <li class="select" v-for="item in channel.list" :key="item.id">{{item.name}}</li>
+    <li :class="{select:channel.active===item.id}"
+     v-for="item in channel.list" 
+     :key="item.id"
+     @click="channel.changeActive(item.id)"
+     >{{item.name}}</li>
     
   </ul>
 </template>

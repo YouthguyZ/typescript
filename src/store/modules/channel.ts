@@ -20,7 +20,8 @@ const useChannelStore=defineStore('channel',{
   state(){
     return {
       // 类型断言
-      list:[] as channelList
+      list:[] as channelList,
+      active:-1
     }
   },
   actions:{
@@ -29,6 +30,11 @@ const useChannelStore=defineStore('channel',{
      const res=await axios.get<channels>('http://geek.itheima.net/v1_0/channels')
      console.log(res.data.data.channels);
      this.list=res.data.data.channels
+     this.active=res.data?.data?.channels?.[0]?.id
+    },
+    changeActive(active:number){
+      this.active=active
+
     }
   },
   getters:{}
